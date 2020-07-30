@@ -11,6 +11,8 @@ import AppIcon from "../images/icon.png";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { loginUser } from "../redux/actions/userAction";
 
 const styles = theme => ({
   ...theme.spreadThis
@@ -22,36 +24,24 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      loading: false,
       errors: {},
     };
   }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.UI.errors) {
+      this.setState({ errors: nextProps.UI.errors});
+    }
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({
-      loading: true,
-    });
     const userData = {
       email: this.state.email,
       password: this.state.password
     };
-    axios
-      .post("/login", userData)
-      .then((res) => {
-        console.log(res.data);
-        localStorage.setItem('FBIdToken',`Bearer ${res.data.token}`)
-        this.setState({
-          loading: false,
-        });
-        this.props.history.push("/");
-      })
-      .catch((err) => {
-        this.setState({
-          errors: err.response.data,
-          loading: false,
-        });
-      });
-  };
+    this.props.loginUser(userData, this.props.history);
+  }; 
 
   handleChange = (e) => {
     this.setState({
@@ -59,8 +49,8 @@ class Login extends Component {
     });
   };
   render() {
-    const { classes } = this.props;
-    const { errors, loading } = this.state;
+    const { classes, UI : { loading } } = this.props;
+    const { errors } = this.state;
     return (
       <Grid container className={classes.form}>
         <Grid item sm></Grid>
@@ -125,6 +115,14 @@ class Login extends Component {
 
 Login.propTypes = {
   classes: PropTypes.object.isRequired,
+  loginUser: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+  UI: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Login);
+const mapStateToProps = state => ({
+  user: state.user,
+  UI: state.UI
+})
+
+export default connect(mapStateToProps, {loginUser})(withStyles(styles)(Login));
