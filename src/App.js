@@ -21,7 +21,7 @@ const token = localStorage.FBIdToken;
 if(token) {
   const decodedToken = JwtDecode(token);
   if(decodedToken.exp * 1000 < Date.now()) {
-    store.dispatch(logoutUser);
+    store.dispatch(logoutUser());
     window.location.href = '/login'
   } else {
     store.dispatch({ type: SET_AUTHENTICATED });
