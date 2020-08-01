@@ -9,7 +9,6 @@ import {
 } from "@material-ui/core";
 import AppIcon from "../images/icon.png";
 import PropTypes from "prop-types";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { loginUser } from "../redux/actions/userAction";
