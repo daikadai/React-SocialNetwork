@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-import { withStyles, Button, Paper, Typography, IconButton, Tooltip } from "@material-ui/core";
+import { withStyles, Button, Paper, Typography } from "@material-ui/core";
 import { connect } from "react-redux";
 import {LocationOn, CalendarToday, KeyboardReturn} from '@material-ui/icons';
 import EditIcon from '@material-ui/icons/Edit';
@@ -10,6 +10,7 @@ import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import { logoutUser, uploadImage } from "../redux/actions/userAction";
 import EditDetail from "./EditDetail";
+import MyButton from "../util/MyButton";
 
 const styles = (theme) => ({
   paper: {
@@ -90,11 +91,9 @@ class Profile extends Component {
           <div className="image-wrapper">
             <img src={imageUrl} alt="profile" className="profile-image"/>
             <input type="file" id="imageInput" onChange={this.handleImageChange} hidden="hidden"/>
-            <Tooltip title="Edit profile picture" placement="top">
-              <IconButton onClick={this.handleEditPicture} className="button">
-                  <EditIcon color="primary" />
-              </IconButton>
-            </Tooltip>
+            <MyButton tip="Edit profile picture" onClick={this.handleEditPicture} btnClassName="button">
+              <EditIcon color="primary" />
+            </MyButton>
           </div>
           <hr/>
           <div className="profile-details">
@@ -124,11 +123,9 @@ class Profile extends Component {
               Joined {dayjs(createdAt).format('MMM YYYY')}
             </span>
           </div>
-          <Tooltip title="Logout" placement="top">
-              <IconButton onClick={this.handleLogout}>
-                <KeyboardReturn color="primary"/>
-              </IconButton>
-          </Tooltip>
+          <MyButton tip="Logout" onClick={this.handleLogout} btnClassName="button">
+            <KeyboardReturn color="primary" />
+          </MyButton>
           <EditDetail/>
         </div>
       </Paper>
