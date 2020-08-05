@@ -22,7 +22,7 @@ class Navbar extends Component {
                 <MyButton tip="Post a Scream!">
                   <AddIcon />
                 </MyButton>
-                <Link>
+                <Link to="/">
                   <MyButton tip="Home">
                     <HomeIcon />
                   </MyButton>
