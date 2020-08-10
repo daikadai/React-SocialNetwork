@@ -6,8 +6,10 @@ import { withStyles, DialogContent, CircularProgress, Typography, Grid, Dialog }
 import { getScream } from "../redux/actions/dataActions";
 import MyButton from "../util/MyButton";
 import { UnfoldMore } from "@material-ui/icons";
+import ChatIcon from '@material-ui/icons/Chat';
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
+import LikeButton from "./LikeButton";
 
 const styles = theme => ({
   ...theme.spreadThis,
@@ -27,6 +29,15 @@ const styles = theme => ({
   closeButton: {
     position: 'absolute',
     left: '90%'
+  },
+  expandButton: {
+    position: 'absolute',
+    left: '90%'
+  },
+  spinnerDiv: {
+    textAlign: 'center',
+    marginTop: 50,
+    marginBottom: 50
   }
 });
 
@@ -58,7 +69,9 @@ class ScreamDialog extends Component {
     } = this.props;
 
     const dialogMarkup = loading ? (
-      <CircularProgress size={200}/>
+      <div className={classes.spinnerDiv}>
+        <CircularProgress size={200}/>
+      </div>
     ) : (
       <Grid container spacing={2}>
           <Grid item sm={5}>
@@ -76,6 +89,12 @@ class ScreamDialog extends Component {
             <Typography variant="body1">
               {body}
             </Typography>
+            <LikeButton screamId={screamId} />
+            <span>{likeCount} likes</span>
+            <MyButton tip="comments">
+              <ChatIcon color="primary"/>
+            </MyButton>
+            <span>{commentCount} comments</span>
           </Grid>
       </Grid>
     )
