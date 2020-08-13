@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { editUserDetails } from "../redux/actions/userAction";
+import { editUserDetails } from "../../redux/actions/userAction";
 import {
   withStyles,
   Dialog,
@@ -12,7 +12,7 @@ import {
   Button,
 } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
-import MyButton from "../util/MyButton";
+import MyButton from "../../util/MyButton";
 const styles = (theme) => ({
   ...theme.spreadThis,
   button: {

@@ -5,10 +5,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 import HomeIcon from '@material-ui/icons/Home'
 import Notifications from '@material-ui/icons/Notifications'
-import PostScream from './PostScream';
+import PostScream from '../scream/PostScream';
+
+
 class Navbar extends Component {
   render() {
     const { authenticated } = this.props;

@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { postScream, clearErrors } from '../redux/actions/dataActions'
+import { postScream, clearErrors } from '../../redux/actions/dataActions'
 import { withStyles, Dialog, DialogTitle, DialogContent, TextField, Button, CircularProgress } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add'
-import MyButton from '../util/MyButton'
+import MyButton from '../../util/MyButton'
 import  CloseIcon  from '@material-ui/icons/Close'
 
 const styles = (theme) => ({

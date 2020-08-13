@@ -3,22 +3,20 @@ import PropTypes from "prop-types";
 import CloseIcon from "@material-ui/icons/Close";
 import { connect } from "react-redux";
 import { withStyles, DialogContent, CircularProgress, Typography, Grid, Dialog } from "@material-ui/core";
-import { getScream } from "../redux/actions/dataActions";
-import MyButton from "../util/MyButton";
+import { getScream } from "../../redux/actions/dataActions";
+import MyButton from "../../util/MyButton";
 import { UnfoldMore } from "@material-ui/icons";
 import ChatIcon from '@material-ui/icons/Chat';
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import LikeButton from "./LikeButton";
+import Comments from "./Comments";
+
 
 const styles = theme => ({
   ...theme.spreadThis,
-  invisibleSeparator: {
-    border: 'none',
-    margin: 4
-  },
   profileImage: {
-    maxWidth: 200,
+    width: 200,
     height: 200,
     borderRadius: '50%',
     objectFit: 'cover'
@@ -64,6 +62,7 @@ class ScreamDialog extends Component {
           commentCount,
           userImage,
           userHandle,
+          comments
         },
       UI: { loading },
     } = this.props;
@@ -96,6 +95,8 @@ class ScreamDialog extends Component {
             </MyButton>
             <span>{commentCount} comments</span>
           </Grid>
+          <hr className={classes.visibleSepartor} />
+          <Comments comments={comments} />
       </Grid>
     )
     return (

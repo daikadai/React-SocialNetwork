@@ -8,9 +8,10 @@ import LinkIcon from '@material-ui/icons/Link';
 import MuiLink from '@material-ui/icons/Link';
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
-import { logoutUser, uploadImage } from "../redux/actions/userAction";
 import EditDetail from "./EditDetail";
-import MyButton from "../util/MyButton";
+
+import { logoutUser, uploadImage } from "../../redux/actions/userAction";
+import MyButton from "../../util/MyButton";
 
 const styles = (theme) => ({
   paper: {

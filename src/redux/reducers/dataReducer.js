@@ -26,13 +26,16 @@ export default function(state=initialState, action) {
       }
     case LIKE_SCREAM:
     case UNLIKE_SCREAM:
-      let index = state.screams.findIndex(scream => scream.screamId === action.payload.screamId);
-      state.screams[index] = action.payload;
-      if(state.scream.screamId === action.payload.screamId) {
-        state.scream = action.payload
-      }
+      // let index = state.screams.findIndex(scream => scream.screamId === action.payload.screamId);
+      // state.screams[index] = action.payload;
+      // if(state.scream.screamId === action.payload.screamId) {
+      //   state.scream = action.payload
+      // }
+      const { comments } = state.scream;
       return {
-        ...state
+        ...state,
+        screams: state.screams.map(scream => scream.screamId === action.payload.screamId ? action.payload : scream ),
+        scream: state.scream.screamId === action.payload.screamId && {...action.payload, comments}
       }
     case DELETE_SCREAM:
       return {
