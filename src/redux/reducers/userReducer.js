@@ -1,4 +1,4 @@
-import { SET_AUTHENTICATED, SET_UNAUTHENTICATED, SET_USER, LOADING_USER, UNLIKE_SCREAM, LIKE_SCREAM } from "../types";
+import { SET_AUTHENTICATED, SET_UNAUTHENTICATED, SET_USER, LOADING_USER, UNLIKE_SCREAM, LIKE_SCREAM, MARK_NOTIFICATIONS_READ } from "../types";
 
 const initialState = {
   authenticated: false,
@@ -45,6 +45,11 @@ export default function(state = initialState, action) {
         likes: state.likes.filter(
           like => like.screamId !== action.payload.screamId
         )
+      }
+    case MARK_NOTIFICATIONS_READ:
+      state.notifications.forEach(not => not.read = true);
+      return {
+        ...state
       }
     default:
       return state;
